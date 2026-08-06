@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package catalog;
+
+import "google/protobuf/empty.proto";
+
+service CatalogService {
+  rpc CreateCategory(CreateCategoryRequest) returns (Category);
+
+  rpc GetCategoryById(EntityIdRequest) returns (Category);
+
+  rpc UpdateCategory(UpdateCategoryRequest) returns (Category);
+
+  rpc DeleteCategory(EntityIdRequest) returns (google.protobuf.Empty);
+
+  rpc ListCategories(google.protobuf.Empty) returns (CategoryListResponse);
+
+  rpc CreateProduct(CreateProductRequest) returns (Product);
+
+  rpc GetProductById(EntityIdRequest) returns (Product);
+
+  rpc UpdateProduct(UpdateProductRequest) returns (Product);
+
+  rpc DeleteProduct(EntityIdRequest) returns (google.protobuf.Empty);
+
+  rpc ListProducts(google.protobuf.Empty) returns (ProductListResponse);
+}
+
+message Category {
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
+  string createdAt = 4;
+  string updatedAt = 5;
+}
+
+message Product {
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
+  double price = 4;
+  int32 categoryId = 5;
+  string createdAt = 6;
+  string updatedAt = 7;
+}
+
+message CreateCategoryRequest {
+  string name = 1;
+  string description = 2;
+}
+
+message UpdateCategoryRequest {
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
+}
+
+message CreateProductRequest {
+  string name = 1;
+  string description = 2;
+  double price = 3;
+  int32 categoryId = 4;
+}
+
+message UpdateProductRequest {
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
+  double price = 4;
+  int32 categoryId = 5;
+}
+
+message EntityIdRequest {
+  int32 id = 1;
+}
+
+message CategoryListResponse {
+  repeated Category data = 1;
+}
+
+message ProductListResponse {
+  repeated Product data = 1;
+}
