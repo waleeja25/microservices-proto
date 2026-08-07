@@ -5,15 +5,15 @@ package user;
 import "google/protobuf/empty.proto";
 
 service UserService {
-  rpc CreateUser(CreateUserRequest) returns (User);
+  rpc create(CreateUserRequest) returns (User);
 
-  rpc GetUserById(EntityIdRequest) returns (User);
+  rpc getById(EntityIdRequest) returns (User);
 
-  rpc UpdateUser(UpdateUserRequest) returns (User);
+  rpc update(UpdateUserRequest) returns (User);
 
-  rpc DeleteUser(EntityIdRequest) returns (google.protobuf.Empty);
+  rpc delete(EntityIdRequest) returns (google.protobuf.Empty);
 
-  rpc ListUsers(google.protobuf.Empty) returns (UserListResponse);
+  rpc list(google.protobuf.Empty) returns (UserListResponse);
 }
 
 message User {
