@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package category;
+
+import "google/protobuf/empty.proto";
+
+service CategoryService {
+  rpc create(CreateCategoryRequest) returns (Category);
+
+  rpc getById(EntityIdRequest) returns (Category);
+
+  rpc update(UpdateCategoryRequest) returns (Category);
+
+  rpc delete(EntityIdRequest) returns (google.protobuf.Empty);
+
+  rpc list(google.protobuf.Empty) returns (CategoryListResponse);
+}
+
+message Category {
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
+  string createdAt = 4;
+  string updatedAt = 5;
+}
+
+message CreateCategoryRequest {
+  string name = 1;
+  string description = 2;
+}
+
+message UpdateCategoryRequest {
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
+}
+
+message EntityIdRequest {
+  int32 id = 1;
+}
+
+message CategoryListResponse {
+  repeated Category data = 1;
+}
