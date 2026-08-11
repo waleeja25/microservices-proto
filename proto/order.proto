@@ -5,52 +5,25 @@ package order;
 import "google/protobuf/empty.proto";
 
 service OrderService {
-  rpc CreateOrder(CreateOrderRequest) returns (Order);
-
-  rpc GetOrderById(EntityIdRequest) returns (Order);
-
-  rpc UpdateOrderStatus(UpdateOrderStatusRequest) returns (Order);
-
-  rpc DeleteOrder(EntityIdRequest) returns (google.protobuf.Empty);
-
-  rpc ListOrders(google.protobuf.Empty) returns (OrderListResponse);
-}
-
-enum OrderStatus {
-  PENDING = 0;
-  COMPLETED = 1;
-  CANCELLED = 2;
+  rpc create(CreateOrderRequest) returns (Order);
+  rpc getById(EntityIdRequest) returns (Order);
+  rpc delete(EntityIdRequest) returns (google.protobuf.Empty);
+  rpc list(ListOrderRequest) returns (OrderListResponse);
 }
 
 message Order {
   int32 id = 1;
   int32 userId = 2;
-  OrderStatus status = 3;
+  int32 productId = 3;
   double totalAmount = 4;
-  repeated OrderItem items = 5;
-  string createdAt = 6;
-  string updatedAt = 7;
-}
-
-message OrderItem {
-  int32 productId = 1;
-  int32 quantity = 2;
-  double unitPrice = 3;
+  string createdAt = 5;
+  string updatedAt = 6;
 }
 
 message CreateOrderRequest {
   int32 userId = 1;
-  repeated CreateOrderItemRequest items = 2;
-}
-
-message CreateOrderItemRequest {
-  int32 productId = 1;
-  int32 quantity = 2;
-}
-
-message UpdateOrderStatusRequest {
-  int32 id = 1;
-  OrderStatus status = 2;
+  int32 productId = 2;
+  double totalAmount = 3;
 }
 
 message EntityIdRequest {
@@ -59,4 +32,19 @@ message EntityIdRequest {
 
 message OrderListResponse {
   repeated Order data = 1;
+  PaginationMeta meta = 2;
+}
+
+message PaginationMeta {
+  int32 page = 1;
+  int32 limit = 2;
+  int32 total = 3;
+  int32 totalPages = 4;
+}
+
+message ListOrderRequest {
+  int32 page = 1;
+  int32 limit = 2;
+  optional int32 userId = 3;
+  optional int32 productId = 4;
 }

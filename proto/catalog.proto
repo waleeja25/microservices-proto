@@ -99,4 +99,5 @@ message ListProductsRequest {
   int32 page = 1;
   int32 limit = 2;
   string search = 3;
+  optional int32 categoryId = 4;
 }
