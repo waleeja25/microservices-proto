@@ -2,9 +2,20 @@
   "name": "microservices-proto",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "proto"
+  ],
+  "peerDependencies": {
+    "@nestjs/microservices": "^11",
+    "rxjs": "^7"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "proto:generate": ".\\.protoc\\bin\\protoc.exe --plugin=protoc-gen-ts_proto=.\\node_modules\\.bin\\protoc-gen-ts_proto.cmd --ts_proto_out=./generated --ts_proto_opt=nestJs=true,esModuleInterop=true,useOptionals=messages --proto_path=./proto --proto_path=./.protoc/include ./proto/order.proto ./proto/user.proto ./proto/catalog.proto"
   },
   "repository": {
     "type": "git",
@@ -18,6 +29,10 @@
   },
   "homepage": "https://github.com/waleeja25/microservices-proto#readme",
   "devDependencies": {
-    "prettier": "^3.9.6"
+    "@nestjs/microservices": "^11.2.1",
+    "prettier": "^3.9.6",
+    "rxjs": "^7.8.2",
+    "ts-proto": "^2.12.0",
+    "typescript": "^7.0.2"
   }
 }
