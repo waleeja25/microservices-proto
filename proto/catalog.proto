@@ -38,8 +38,8 @@ message CreateCategoryRequest {
 
 message UpdateCategoryRequest {
   int32 id = 1;
-  string name = 2;
-  string description = 3;
+  optional string name = 2;
+  optional string description = 3;
 }
 
 message CategoryListResponse {
@@ -73,10 +73,10 @@ message CreateProductRequest {
 
 message UpdateProductRequest {
   int32 id = 1;
-  string name = 2;
-  string description = 3;
-  double price = 4;
-  int32 categoryId = 5;
+  optional string name = 2;
+  optional string description = 3;
+  optional double price = 4;
+  optional int32 categoryId = 5;
 }
 
 message ProductListResponse {
@@ -98,6 +98,6 @@ message EntityIdRequest {
 message ListProductsRequest {
   int32 page = 1;
   int32 limit = 2;
-  string search = 3;
+  optional string search = 3;
   optional int32 categoryId = 4;
 }

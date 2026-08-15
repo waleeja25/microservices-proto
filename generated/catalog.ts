@@ -26,8 +26,8 @@ export interface CreateCategoryRequest {
 
 export interface UpdateCategoryRequest {
   id: number;
-  name: string;
-  description: string;
+  name?: string | undefined;
+  description?: string | undefined;
 }
 
 export interface CategoryListResponse {
@@ -60,10 +60,10 @@ export interface CreateProductRequest {
 
 export interface UpdateProductRequest {
   id: number;
-  name: string;
-  description: string;
-  price: number;
-  categoryId: number;
+  name?: string | undefined;
+  description?: string | undefined;
+  price?: number | undefined;
+  categoryId?: number | undefined;
 }
 
 export interface ProductListResponse {
@@ -85,7 +85,7 @@ export interface EntityIdRequest {
 export interface ListProductsRequest {
   page: number;
   limit: number;
-  search: string;
+  search?: string | undefined;
   categoryId?: number | undefined;
 }
 
